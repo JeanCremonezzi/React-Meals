@@ -1,3 +1,5 @@
+import { Modal } from "../../UI/Modal/Modal";
+
 import styles from "./CartComponent.module.css";
 
 export const CartComponent = () => {
@@ -10,7 +12,7 @@ export const CartComponent = () => {
 	);
 
 	return (
-		<div>
+		<Modal>
 			{cartItems}
 
 			<div className={styles.total}>
@@ -22,6 +24,6 @@ export const CartComponent = () => {
 				<button className={styles["button--alt"]}>Close</button>
 				<button className={styles.button}>Order</button>
 			</div>
-		</div>
+		</Modal>
 	);
 };
