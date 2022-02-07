@@ -9,8 +9,13 @@ import styles from "./CartComponent.module.css";
 export const CartComponent = (props) => {
 	const ctxCart = useContext(CartContext);
 
-	const handleRemoveItem = (id) => {};
-	const handleAddItem = (item) => {};
+	const handleRemoveItem = (id) => {
+		ctxCart.removeItem(id);
+	};
+
+	const handleAddItem = (item) => {
+		ctxCart.addItem({ ...item, amount: 1 });
+	};
 
 	const cartItems = (
 		<ul className={styles["cart-items"]}>

@@ -29,7 +29,34 @@ const cartReducer = (state, action) => {
 
 		return {
 			items: updatedItems,
-			totalAmount: updatedTotalAmount,
+			totalAmount: Number(updatedTotalAmount),
+		};
+	}
+
+	if (action.type === "REMOVE_ITEM") {
+		const indexExistingItem = state.items.findIndex((item) => {
+			return item.id === action.id;
+		});
+
+		const itemExists = state.items[indexExistingItem];
+
+		const updatedTotalAmount = (state.totalAmount - itemExists.price).toFixed(2);
+
+		let updatedItems;
+
+		if (itemExists.amount === 1) {
+			updatedItems = state.items.filter((item) => {
+				return item.id !== action.id;
+			});
+		} else {
+			const itemToUpdate = { ...itemExists, amount: itemExists.amount - 1 };
+			updatedItems = [...state.items];
+			updatedItems[indexExistingItem] = itemToUpdate;
+		}
+
+		return {
+			items: updatedItems,
+			totalAmount: Number(updatedTotalAmount),
 		};
 	}
 
@@ -46,7 +73,9 @@ export const CartProvider = (props) => {
 		cartDispatch({ type: "ADD_ITEM", item: item });
 	};
 
-	const handleRemoveItem = (id) => {};
+	const handleRemoveItem = (id) => {
+		cartDispatch({ type: "REMOVE_ITEM", id: id });
+	};
 
 	const cartCtx = {
 		items: cartState.items,
