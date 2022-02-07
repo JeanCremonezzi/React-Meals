@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { CartComponent } from "./components/Cart/CartComponent/CartComponent";
 
+import { CartProvider } from "./store/CartProvider";
+
+import { CartComponent } from "./components/Cart/CartComponent/CartComponent";
 import { Header } from "./components/Layout/Header/Header";
 import { Meals } from "./components/Meals/MealsComponent/MealsComponent";
 
@@ -14,7 +16,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<CartProvider>
 			{cartIsOpen && (
 				<CartComponent onCartClick={handleCartIsOpen}></CartComponent>
 			)}
@@ -24,7 +26,7 @@ function App() {
 			<main>
 				<Meals />
 			</main>
-		</>
+		</CartProvider>
 	);
 }
 
