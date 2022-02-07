@@ -1,6 +1,6 @@
 import styles from "./CartButton.module.css";
 
-import { CartIcon } from "../../Cart/CartIcon";
+import { CartIcon } from "../../Cart/CartIcon/CartIcon";
 
 export const CartButton = () => {
 	return (
