@@ -4,12 +4,12 @@ import { CartButton } from "../CartButton/CartButton";
 
 import MealsImg from "../../../assets/meals.jpg";
 
-export const Header = () => {
+export const Header = (props) => {
 	return (
 		<>
 			<header className={styles.header}>
 				<h1>React Meals</h1>
-				<CartButton />
+				<CartButton onClick={props.onCartClick} />
 			</header>
 
 			<div className={styles["main-image"]}>
