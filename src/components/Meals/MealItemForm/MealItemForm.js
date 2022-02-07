@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 
-import CartContext from "../../../store/cart-context";
 import { Input } from "../../UI/Input/Input";
 
 import styles from "./MealItemForm.module.css";
