@@ -4,9 +4,28 @@ import CartContext from "./cart-context";
 
 const cartReducer = (state, action) => {
 	if (action.type === "ADD_ITEM") {
-		const updatedItems = state.items.concat(action.item);
 		const updatedTotalAmount =
 			state.totalAmount + action.item.price * action.item.amount;
+
+		const indexExistingItem = state.items.findIndex((item) => {
+			return item.id === action.item.id;
+		});
+
+		const itemExists = state.items[indexExistingItem];
+
+		let updatedItems;
+
+		if (itemExists) {
+			const itemToAdd = {
+				...itemExists,
+				amount: itemExists.amount + action.item.amount,
+			};
+
+			updatedItems = [...state.items];
+			updatedItems[indexExistingItem] = itemToAdd;
+		} else {
+			updatedItems = state.items.concat(action.item);
+		}
 
 		return {
 			items: updatedItems,
